@@ -85,22 +85,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 input {
+  width: calc(100% - 195px);
   border: 0;
   padding: 20px;
   font-size: 1.3em;
   color: #687f7f;
   display: inline;
 }
-.btnInput{
+.btnInput {
   width: 150px;
   border: 0px;
   padding: 20px;
   font-size: 1.3em;
-  background-color: rgb(116, 115, 115);
   display: inline;
+  background-color: rgb(116, 115, 115);
 }
-.btnInput:hover{
-  padding: 20px;
+.btnInput:hover {
+  padding: 20x;
   margin: 0px;
   border: 0px;
 }

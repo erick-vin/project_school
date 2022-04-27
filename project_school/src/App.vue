@@ -1,34 +1,37 @@
 <template>
-  <div id="app">
-    <TodoAlunos/>
+  <div id="app" >
+    <Nav></Nav>
+    <div class="marginPrincipal">
+      <router-view :key="$route.fullPath"></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import TodoAlunos from './components/Aluno/TodoAlunos.vue'
+
+
 
 export default {
   name: 'App',
-  components: {
-    TodoAlunos
-  }
 }
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 body{
+  width: 60%;
+  min-width: 500px;
   background-color: #eee;
   font-family: "Montserrat", sans-serif;
   display: grid;
   justify-items: center;
 }
 body, html {
-  margin: 0;
+  margin: 0 auto;
   height: 100%;
 }
 .marginPrincipal {
-     width: 50%;
+     width: 100%;
      margin: auto;
 }
 #app {
