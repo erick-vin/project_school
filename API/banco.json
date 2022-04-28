@@ -1,8 +1,17 @@
 {
   "professores": [
-    {"id": 1, "nome": "Erick"},
-    {"id": 2, "nome": "Vinicius"},
-    {"id": 3, "nome": "Santos"}
+    {
+      "id": 1,
+      "nome": "Erick"
+    },
+    {
+      "id": 2,
+      "nome": "Vinicius"
+    },
+    {
+      "id": 3,
+      "nome": "Santos"
+    }
   ],
   "alunos": [
     {
@@ -10,7 +19,8 @@
       "sobrenome": "",
       "id": 1,
       "professor": {
-        "id": 2, "nome": "Vinicius"
+        "id": 2,
+        "nome": "Vinicius"
       }
     },
     {
@@ -18,8 +28,18 @@
       "sobrenome": "",
       "id": 2,
       "professor": {
-        "id": 2, "nome": "Vinicius"
+        "id": 2,
+        "nome": "Vinicius"
       }
+    },
+    {
+      "nome": "lima",
+      "sobrenome": "",
+      "professor": {
+        "id": 3,
+        "nome": "Santos"
+      },
+      "id": 4
     }
   ]
 }

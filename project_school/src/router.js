@@ -14,7 +14,12 @@ export default new Router({
             component: TodoProfessores
         },
         {
-            path: '/alunos',
+            path: '/alunos/:prof_id',
+            nome: 'Alunos',
+            component: TodoAlunos
+        },
+        {
+            path: '/alunosall',
             nome: 'Alunos',
             component: TodoAlunos
         },

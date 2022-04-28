@@ -1,11 +1,16 @@
 <template>
   <div>
-    <TituloShare texto="Aluno"/>
-    <div>
-      <input type="text" placeholder="Nome do Aluno" v-model="nome" v-on:keyup.enter="addAluno()">
+    <TituloShare :texto="professorid != undefined ? 'Professor: ' + professor.nome : 'Todos os Alunos'" />
+    <div v-if="professorid != undefined">
+      <input
+        type="text"
+        placeholder="Nome do Aluno"
+        v-model="nome"
+        v-on:keyup.enter="addAluno()"
+      />
       <button class="btn btnInput" @click="addAluno()">Adicionar</button>
     </div>
-    
+
     <table v-if="alunos.length">
       <thead>
         <th>Mat.</th>
@@ -14,16 +19,23 @@
       </thead>
       <tbody>
         <tr v-for="(aluno, index) in alunos" :key="index">
-          <td>{{aluno.id}}</td>
-          <td>{{aluno.nome}}</td>
-          <td><button class="btn btn_Danger" type="button" @click="remover(aluno)">Remover</button></td>
+          <td>{{ aluno.id }}</td>
+          <td>{{ aluno.nome }}</td>
+          <td>
+            <button
+              class="btn btn_Danger"
+              type="button"
+              @click="remover(aluno)"
+            >
+              Remover
+            </button>
+          </td>
         </tr>
       </tbody>
-      
     </table>
     <tfoot v-else>
-          Nenhum Aluno encontrado
-      </tfoot>
+      Nenhum Aluno encontrado
+    </tfoot>
   </div>
 </template>
 
@@ -32,54 +44,69 @@ import TituloShare from "../_share/TituloShare.vue";
 export default {
   components: {
     TituloShare,
-},
+  },
   data() {
     return {
-      titulo: 'Aluno',
-      nome: '',
+      titulo: "Aluno",
+      professorid: this.$route.params.prof_id,
+      professor: {},
+      nome: "",
       alunos: [],
+    };
+  },
+  created() {
+    if (this.professorid) {
+      this.carregarProfessores()
+      this.$http
+        .get("http://localhost:3000/alunos?professor.id=" + this.professorid)
+        .then((res) => res.json())
+        .then((alunos) => (this.alunos = alunos));
+    } else {
+      this.$http
+        .get("http://localhost:3000/alunos")
+        .then((res) => res.json())
+        .then((alunos) => (this.alunos = alunos));
     }
   },
-  created(){
-    this.$http
-    .get('http://localhost:3000/alunos')
-    .then(res => res.json())
-    .then(alunos => this.alunos = alunos)
-  },
-  props: {
-  },
+  props: {},
   methods: {
     addAluno() {
       let _aluno = {
         nome: this.nome,
-        sobrenome: ""
-      }
+        sobrenome: "",
+        professor: {
+          id: this.professor.id,
+          nome: this.professor.nome
+        }
+      };
       this.$http
-      .post('http://localhost:3000/alunos', _aluno)
-      .then(res => res.json())
-      .then(alunoRetornado => {
-        this.alunos.push(alunoRetornado);
-        this.nome = '';
-      })
-      
+        .post("http://localhost:3000/alunos", _aluno)
+        .then((res) => res.json())
+        .then((alunoRetornado) => {
+          this.alunos.push(alunoRetornado);
+          this.nome = "";
+        });
 
-      this.nome = '';
-      
-      
+      this.nome = "";
     },
-    remover(aluno){
-      this.$http
-      .delete(`http://localhost:3000/alunos/${aluno.id}`)
-      .then(() => {
+    remover(aluno) {
+      this.$http.delete(`http://localhost:3000/alunos/${aluno.id}`).then(() => {
         this.$http
-          .get('http://localhost:3000/alunos')
-          .then(res => res.json())
-          .then(alunos => this.alunos = alunos)
-      })
-      
+          .get("http://localhost:3000/alunos")
+          .then((res) => res.json())
+          .then((alunos) => (this.alunos = alunos));
+      });
+    },
+    carregarProfessores(){
+      this.$http
+      .get("http://localhost:3000/professores/" + this.professorid)
+      .then((res) => res.json())
+      .then((professor) => {
+        this.professor = professor
+      });
     }
   },
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
