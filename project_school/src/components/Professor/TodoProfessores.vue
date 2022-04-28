@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <TituloShare texto="Professores"/>
-        <table v-if="professores.length">
+  <div>
+    <TituloShare texto="Professores" />
+    <table v-if="professores.length">
       <thead>
         <th>Cód.</th>
         <th>Nome</th>
@@ -9,35 +9,51 @@
       </thead>
       <tbody>
         <tr v-for="(professor, index) in professores" :key="index">
-          <td>{{professor.id}}</td>
-          <td>{{professor.nome}}</td>
-          <td>3</td>
+          <td>{{ professor.id }}</td>
+          <router-link to="/alunos" tag="td" style="cursor: pointer">
+            {{ professor.nome }} {{ professor.sobrenome }}
+          </router-link>
+          <td>
+            {{ professor.qtdAlunos }}
+          </td>
         </tr>
       </tbody>
-      
     </table>
-    </div>
+  </div>
 </template>
 
 <script>
 import TituloShare from "../_share/TituloShare.vue";
-    export default {
-        components:{
-            TituloShare
-        },
-        data(){
-            return{
-                professores:[
-                    {id: 1, nome: 'Erick'},
-                    {id: 2, nome: 'Vinicius'},
-                    {id: 3, nome: 'Santos'}
-                ]
-            }
+export default {
+  components: {
+    TituloShare,
+  },
+  data() {
+    return {
+      professores: [],
+      Alunos: []
+    };
+  },
+  created() {
+    this.$http
+      .get("http://localhost:3000/professores")
+      .then((res) => res.json())
+      .then((professor) => (this.professores = professor));
+  },
+  props: {},
+  methods: {
+    pegarQtdAlunosPorProfessor(){
+      this.professores.forEach((professor, index) => {
+        professor = {
+          id: professor.id,
+          nome: professor.nome,
+          qtdAlunos: this.Alunos.filter()
         }
-        
+      })
     }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

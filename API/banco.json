@@ -1,14 +1,25 @@
 {
+  "professores": [
+    {"id": 1, "nome": "Erick"},
+    {"id": 2, "nome": "Vinicius"},
+    {"id": 3, "nome": "Santos"}
+  ],
   "alunos": [
     {
       "nome": "teste",
       "sobrenome": "",
-      "id": 1
+      "id": 1,
+      "professor": {
+        "id": 2, "nome": "Vinicius"
+      }
     },
     {
       "nome": "teste",
       "sobrenome": "",
-      "id": 2
+      "id": 2,
+      "professor": {
+        "id": 2, "nome": "Vinicius"
+      }
     }
   ]
 }

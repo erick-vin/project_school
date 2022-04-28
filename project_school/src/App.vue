@@ -1,6 +1,6 @@
 <template>
   <div id="app" >
-    <Nav></Nav>
+    <NavMenu></NavMenu>
     <div class="marginPrincipal">
       <router-view :key="$route.fullPath"></router-view>
     </div>
@@ -9,10 +9,13 @@
 
 <script>
 
-
+import NavMenu from "./components/_nav/NavMenu.vue"
 
 export default {
   name: 'App',
+  components: {
+    NavMenu
+  }
 }
 </script>
 
