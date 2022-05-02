@@ -22,19 +22,17 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 body{
-  width: 60%;
-  min-width: 500px;
   background-color: #eee;
   font-family: "Montserrat", sans-serif;
   display: grid;
   justify-items: center;
 }
 body, html {
-  margin: 0 auto;
+  margin: 0;
   height: 100%;
 }
 .marginPrincipal {
-     width: 100%;
+     width: 50%;
      margin: auto;
 }
 #app {

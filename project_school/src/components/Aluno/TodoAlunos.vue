@@ -25,11 +25,11 @@
       </thead>
       <tbody>
         <tr v-for="(aluno, index) in alunos" :key="index">
-          <td>{{ aluno.id }}</td>
+          <td class="colPequeno">{{ aluno.id }}</td>
           <router-link :to="`/alunoDetalhe/${aluno.id}`" tag="td"
             style="cursor: pointer">{{ aluno.nome }} {{ aluno.sobrenome }}</router-link
           >
-          <td>
+          <td class="colPequeno">
             <button
               class="btn btn_Danger"
               type="button"

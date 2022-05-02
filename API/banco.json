@@ -15,12 +15,13 @@
   ],
   "alunos": [
     {
-      "nome": "teste",
-      "sobrenome": "",
       "id": 1,
+      "nome": "testando",
+      "sobrenome": "teste",
+      "dataNasc": "19/12/1999",
       "professor": {
-        "id": 2,
-        "nome": "Vinicius"
+        "id": 3,
+        "nome": "Santos"
       }
     },
     {
@@ -49,6 +50,15 @@
         "nome": "Erick"
       },
       "id": 5
+    },
+    {
+      "nome": "cibele",
+      "sobrenome": "",
+      "professor": {
+        "id": 1,
+        "nome": "Erick"
+      },
+      "id": 6
     }
   ]
 }
